@@ -1,0 +1,354 @@
+1) class with public
+#include <iostream>
+
+using namespace std;
+
+class employee{
+    public:
+    int id;
+    string name;
+    float salary;
+    void insert(int i,string n,float s)
+    {
+        id = i;
+        name = n;
+        salary = s;
+        
+    }
+    void display()
+    {
+        cout<<id<<" "<<name<<" "<<salary<<endl;
+    }
+};
+ int main(void){
+     employee e1;
+     employee e2;
+     e1.insert(201,"sonoo",99000);
+     e2.insert(202,"nakul",29000);
+     e1.display();
+     e2.display();
+     return 0;
+ }
+--------------------------------------------------------------------------\
+2)class with public and private
+#include <iostream>
+
+using namespace std;
+
+class employee{
+    public:
+    int id;
+    string name;
+    float salary;
+    private:
+    void insert(int i,string n,float s)
+    {
+        id = i;
+        name = n;
+        salary = s;
+        
+    }
+    void display()
+    {
+        cout<<id<<" "<<name<<" "<<salary<<endl;
+    }
+};
+ int main(void){
+     employee e1;
+     employee e2;
+     e1.insert(201,"sonoo",99000);
+     e2.insert(202,"nakul",29000);
+     e1.display();
+     e2.display();
+     return 0;
+ }
+
+----------------------------------------------------------------
+3) basic constructor
+#include <iostream>
+using namespace std;
+class Employee
+{
+ public:
+ Employee()
+ {
+ cout<<"Default Constructor Invoked"<<endl;
+ }
+};
+int main(void)
+{
+ Employee e1; //creating an object of Employee
+ Employee e2;
+ return 0;
+} 
+-------------------------------------------------------------
+4)parameterised constructor
+#include <iostream>
+using namespace std;
+class Employee
+{
+ public:
+ int id;
+ string name;
+ float salary;
+ 
+ Employee(int i,string n,float s)
+ 
+ { id = i;
+   name = n;
+   salary = s;
+ }
+  void display()
+  {
+      cout<<id<<" "<<name<<" "<<salary<<endl;
+  }
+  };
+int main(void) {
+ Employee e1 =Employee(101, "Sonoo", 890000); //creating an object of Employee
+ Employee e2=Employee(102, "Nakul", 59000);
+ e1.display();
+ e2.display();
+ return 0;
+  }
+ -------------------------------------------------------------------
+ 5)both parameterized and non parameterised
+#include<iostream>
+#include<string.h>
+using namespace std;
+class Employee
+{
+  public:
+  int id;
+  char name[12];
+  float salary;
+  float tax;
+
+  Employee()
+  {
+   cout<<"Non-parameterized consturctor"<<endl;
+   id = 1001;
+   strcpy(name, "monisha");
+   salary = 73663.736563;
+  }
+
+  Employee(int i , char j[], float k)
+  {
+   cout<<"Parameterized constructor"<<endl;
+   id = i;
+   strcpy(name,j);
+   salary = k;
+  }
+  //User-defined Function
+  void caltax()
+  {
+    tax = salary*0.2;
+    cout<<"Tax Amount: "<<tax<<endl;
+  }
+  //User-defined Function
+  void netsalary()
+  {
+   cout << "Net Salary:"<<salary-tax<<endl;
+  }
+  //USER-DEFINED FUNCTION
+  void display()
+  {
+   cout<<"ID:"<<id<<" NAME:"<<name<<" SALARY:"<<salary<<endl;
+  }
+};
+int main()
+{
+
+ Employee e1;
+ Employee e2 = Employee(12,"Varsha",635.73) ;
+ //clrscr();
+ e1.display();
+ e2.display();
+ e1.caltax();
+ e1.netsalary();
+ e2.caltax();
+ e2.netsalary();
+ return 0;
+}
+--------------------------------------------------------------------------------
+6)multi level inherritance
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class person
+{
+    char name[100],gender[10];
+    int age;
+    public:
+        void getdata()
+        {
+            cout<<"Name: ";
+            fflush(stdin);  /*clears input stream*/
+            strcpy(name,"monisha");
+            cout<<"Age: ";
+            cin>>age;
+            cout<<"Gender: ";
+            cin>>gender;
+        }
+        void display()
+        {
+            cout<<"Name: "<<name<<endl;
+            cout<<"Age: "<<age<<endl;
+            cout<<"Gender: "<<gender<<endl;
+        }
+};
+
+class employee: private person
+{
+    char company[100];
+    float salary;
+    public:
+        void getdata()
+        {
+            person::getdata();
+            cout<<"Name of Company: ";
+            fflush(stdin);
+            strcpy(company,"capgemini");
+            cout<<"Salary: Rs.";
+            cin>>salary;
+        }
+        void display()
+        {
+            person::display();
+            cout<<"Name of Company: "<<company<<endl;
+            cout<<"Salary: Rs."<<salary<<endl;
+        }
+};
+
+class programmer: public employee
+{
+    int number;
+    public:
+        void getdata()
+        {
+            employee::getdata();
+            cout<<"Number of programming language known: ";
+            cin>>number;
+        }
+        void display()
+        {
+            employee::display();
+            cout<<"Number of programming language known: "<<number;
+        }
+};
+
+int main()
+{
+    programmer p;
+    cout<<"Enter data"<<endl;
+    p.getdata();
+    cout<<endl<<"Displaying data"<<endl;
+    p.display();
+    return 0;
+}
+-----------------------------------------------------------------------------------
+7)single level inheritance
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class person
+{
+    char name[100],gender[10];
+    int age;
+    public:
+        void getdata()
+        {
+            cout<<"Name: ";
+            fflush(stdin);  /*clears input stream*/
+            strcpy(name,"monisha");
+            cout<<"Age: ";
+            cin>>age;
+            cout<<"Gender: ";
+            cin>>gender;
+        }
+        void display()
+        {
+            cout<<"Name: "<<name<<endl;
+            cout<<"Age: "<<age<<endl;
+            cout<<"Gender: "<<gender<<endl;
+        }
+};
+
+class employee: public person
+{
+    char company[100];
+    float salary;
+    public:
+        void getdata()
+        {
+            person::getdata();
+            cout<<"Name of Company: ";
+            fflush(stdin);
+            strcpy(company,"capgemini");
+            cout<<"Salary: Rs.";
+            cin>>salary;
+        }
+        void display()
+        {
+            person::display();
+            cout<<"Name of Company: "<<company<<endl;
+            cout<<"Salary: Rs."<<salary<<endl;
+        }
+};
+
+
+int main()
+{
+    employee p;
+    cout<<"Enter data"<<endl;
+    p.getdata();
+    cout<<endl<<"Displaying data"<<endl;
+    p.display();
+    return 0;
+}
+---------------------------------------------------------------------------
+8)MULTIPLE INHERTITANCE WITH DIAMOND ERROR
+#include<iostream>
+using namespace std;
+//MULTIPLE INHERITENCE   - DIMOND PROBLEM
+//                       A
+//                 B          C
+//                       D
+class A   //Base- Class
+{
+  public:
+  void display()
+  {
+    cout<<"A"<<endl;
+  }
+};
+class B  : public A  //LEVEL-1
+{
+  public:
+ void  display()
+  {
+    cout<<"B"<<endl;
+  }
+};
+class C : public A    //LEVEL-1
+{
+  public:
+  void display()
+  {
+    cout<<"C"<<endl;
+  }
+};
+class D : public B , public C  //LEVEL-2
+{
+  public:
+
+};
+//
+int main()
+{
+ D demo;
+ demo.display();
+ return 0;
+}
+-----------------------------------------------------------------------
